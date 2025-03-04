@@ -291,10 +291,32 @@ function handleTabChange(tab) {
   tab = tab + 1;
 }
 
+function handleTabChangeHowto(tab, numIndex = 0) {
+  if (numIndex === 0 || numIndex === 1) {
+    $(".js-nav-tab .is-indicator").css({ opacity: 0 });
+    $(".js-nav-tab .is-indicator2").css({
+      opacity: 1,
+      width: tab.outerWidth(),
+      left: tab.position() ? tab.position().left : 0,
+    });
+  } else if (numIndex === 2 || numIndex === 3) {
+    $(".js-nav-tab .is-indicator2").css({ opacity: 0 });
+    $(".js-nav-tab .is-indicator").css({
+      opacity: 1,
+      width: tab.outerWidth(),
+      left: tab.position() ? tab.position().left : 0,
+    });
+  }
+  tab = tab + 1;
+}
+
 let numberIndex = 0;
 $(window).on("load", function () {
   if ($(".js-nav-tab")) {
     handleTabChange($(".js-nav-tab li.active"));
+    if ($("#repcarepage")) {
+      handleTabChangeHowto($(".js-nav-tab li.active"), 0);
+    }
   }
 });
 
@@ -307,6 +329,9 @@ $(document).on("click", ".js-nav-tab li", function () {
     // tab
     $(this).addClass("active");
     handleTabChange($(this));
+    if ($("#repcarepage")) {
+      handleTabChangeHowto($(this), numberIndex);
+    }
     // content
     $(".js-content-tab:eq(" + numberIndex + ")").addClass("active");
   }
