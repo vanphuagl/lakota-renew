@@ -1,0 +1,58 @@
+/* mixins
+------------------------------------------------------------*/
+
+/* mid */
+
+@mixin mid($flex: true) {
+  @if $flex == false {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+  } @else {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@mixin midimg($maxwidth: initial) {
+  max-width: $maxwidth;
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  position: absolute;
+  @include mid;
+}
+
+@mixin customscroll() {
+  &::-webkit-scrollbar {
+    width: 18px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 10px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: #ccc;
+  }
+}
+
+/* breakpoints */
+
+@mixin maxW($args) {
+  @media only screen and (max-width: $args) {
+    @content;
+  }
+}
+
+@mixin minW($args) {
+  @media only screen and (min-width: $args) {
+    @content;
+  }
+}

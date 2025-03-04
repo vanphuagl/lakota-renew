@@ -1,0 +1,169 @@
+/* ---------------------------------- mega ---------------------------------- */
+
+.c-mega {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+
+  &.is-header {
+    position: absolute;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+    max-height: calc(100vh - 60px - 60px);
+
+    .c-mega_container {
+      padding: 150px 50px 70px;
+      max-height: calc(100vh - 60px - 60px);
+    }
+
+    @include maxW(1024px) {
+      display: none;
+    }
+  }
+
+  &_container {
+    background-color: #f7f5ef;
+    padding: 80px 50px;
+    max-height: 100%;
+    overflow: auto;
+
+    @include customscroll();
+
+    @include maxW(1024px) {
+      padding: 60px 22px 45px;
+      max-height: 100%;
+    }
+  }
+
+  &_inner {
+    display: grid;
+    grid-template-columns: 16.4% 1fr;
+    gap: 10px;
+
+    @include maxW(1024px) {
+      display: block;
+    }
+  }
+
+  &_left {
+    p {
+      font-size: 2.2rem;
+      line-height: 1.4;
+      letter-spacing: 0;
+      opacity: 0.3;
+      cursor: pointer;
+
+      &.active {
+        opacity: 1;
+      }
+    }
+
+    span.is-indicator {
+      display: none;
+    }
+
+    a {
+      font-size: 1.5rem;
+      line-height: 1.65;
+      margin-top: 30px;
+    }
+
+    @include maxW(1024px) {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      width: 100%;
+      position: relative;
+
+      p {
+        font-size: 1.4rem;
+        line-height: 1.68;
+        text-align: center;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 10px;
+        opacity: 1;
+      }
+
+      span.is-indicator {
+        display: inline-block;
+        width: 50%;
+      }
+    }
+  }
+
+  &_right {
+    @include maxW(1024px) {
+      margin-top: 45px;
+    }
+  }
+
+  &_viewall {
+    margin-top: 45px;
+  }
+
+  &_list {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+
+    @include maxW(1024px) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px 10px;
+    }
+  }
+
+  &_items {
+    figure {
+      width: 100%;
+      height: fit-content;
+      display: block;
+      overflow: hidden;
+      position: relative;
+      background-color: #efece5;
+      padding-bottom: 100%;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+        max-width: 100%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        mix-blend-mode: multiply;
+        padding: 30px;
+        aspect-ratio: 1/1;
+      }
+    }
+
+    p {
+      font-size: 1.5rem;
+      line-height: 1.63;
+      margin-top: 15px;
+    }
+
+    @include maxW(1024px) {
+      p {
+        font-size: 1.4rem;
+        line-height: 1.68;
+        margin-top: 10px;
+      }
+    }
+  }
+
+  &_tabs {
+    opacity: 0;
+    animation: 1s forwards fadeTab;
+    display: none;
+    visibility: hidden;
+
+    &.active {
+      display: block;
+      visibility: visible;
+    }
+  }
+}
